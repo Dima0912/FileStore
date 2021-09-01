@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 
 require_once  '..\vendor\autoload.php';
 
- use Core\Routing\Router;
+use Core\Routing\Router;
 
 
 include '../routes/route.php';
@@ -21,6 +21,3 @@ try {
 } catch (Exception $e) {
     dd($e->getMessage());
 }
-
-
-

@@ -4,7 +4,7 @@
 namespace  Core\Routing;
 
 
-class Router 
+class Router
 {
 
     protected $routes = [];
@@ -19,21 +19,21 @@ class Router
 
     protected $controllerNamespace = 'App\\Controllers';
 
-    public function dispatch( $url = '')
-    { 
+    public function dispatch($url = '')
+    {
 
         $url = $this->queryUrl($url);
-             
-         if ($this->match($url)) {
-             $controller = $this->params['controller'];
-             unset ($this->params['controller']);
-             $controller = $this->getNamespace() . $this->convertToStudlyCaps($controller);
 
-             if (class_exists($controller)) {
+        if ($this->match($url)) {
+            $controller = $this->params['controller'];
+            unset($this->params['controller']);
+            $controller = $this->getNamespace() . $this->convertToStudlyCaps($controller);
+
+            if (class_exists($controller)) {
                 $controllerObject = new $controller($this->params);
 
                 $action = $this->params['action'];
-                unset ($this->params['action']);
+                unset($this->params['action']);
                 $action = $this->convertToCameCase($action);
 
                 if (preg_match('/action$/1', $action) == 0) {
@@ -41,15 +41,15 @@ class Router
                 } else {
                     throw new \Exception('Method{$action} in controller {$controller}');
                 }
-             } else {
-                 throw new \Exception( 'Controller class {$controller} not found');
-             }
-         } else {
-             throw new \Exception('no route matched.', 404);
-         }
+            } else {
+                throw new \Exception('Controller class {$controller} not found');
+            }
+        } else {
+            throw new \Exception('no route matched.', 404);
+        }
     }
 
-    public function add( $route, $params = [])
+    public function add($route, $params = [])
     {
         $route = preg_replace("/\//", "\\/", $route);
 
@@ -72,13 +72,12 @@ class Router
 
     public function getParams()
     {
-       return $this->params;
+        return $this->params;
     }
 
     public function match($url)
     {
 
-        dd($this->routes);
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
                 preg_match_all('/\(\?P<[\w]+>\\\\([\w\+]+)\)', $route, $types);
@@ -86,7 +85,7 @@ class Router
                 $step = 0;
                 foreach ($matches as $key => $match) {
                     if (is_string($key)) {
-                        $type = trim($types[1] [$step], "+");
+                        $type = trim($types[1][$step], "+");
                         settype($match, $this->convertTypes[$type]);
                         $params[$key] = $match;
                         $step++;
