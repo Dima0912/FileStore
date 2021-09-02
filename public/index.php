@@ -11,9 +11,11 @@ require_once  '..\vendor\autoload.php';
 use Core\Routing\Router;
 
 
-include '../routes/route.php';
+
 
 $router = new Router();
+
+include '../routes/route.php';
 
 try {
     $path = trim($_SERVER["REQUEST_URI"], "/");
