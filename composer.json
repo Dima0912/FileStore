@@ -1,0 +1,12 @@
+{
+    "name": "domains/lesson6.test",
+    "require": {
+        "larapack/dd": "^1.1"
+    },
+
+    
+        "autoload": {
+            "psr-4": {"Core\\": "Core/"}
+        }
+    
+}

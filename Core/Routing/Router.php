@@ -3,8 +3,10 @@
 
 namespace  Core\Routing;
 
+use App\Controllers\HomeController;
+use Core\RouteInterface\RouteInterface;
 
-class Router
+class Router implements RouteInterface
 {
 
     protected $routes = [];
@@ -135,5 +137,16 @@ class Router
         }
 
         return $namespace;
+    }
+
+    public function route() {
+        
+        if ($_SERVER['REQUEST_URI'] == '/') {
+            $controller = new HomeController();
+            return [$controller, 'index'];
+        }
+
+        $classNamespace = $this->controllerNamespace . ucfirst($this->controller) . 'Controller';
+
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Core;
+namespace App;
 
 use Exception;
 
@@ -14,11 +14,11 @@ class Controller{
         $this->routeParams = $routeParams;
     }
  
-    public function __call(string $method,array $arguments)
+    public function __call(string $method, array $arguments)
     {
         if (method_exists($this, $method)) {
             if ($this->before() !== false) {
-                call_user_func(([$this, $method], $arguments));
+                call_user_func([$this, $method], $arguments);
                 $this->after();
             }
         } else {
