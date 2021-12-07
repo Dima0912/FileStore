@@ -1,25 +1,14 @@
 <?php
 
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+
+//include $_SERVER['DOCUMENT_ROOT'] . '/' . '../vendor/autoload.php';
+
+include '../vendor/autoload.php';
+
+use \framework\Application;
+use \framework\Components\Router\Router;
 
 
-
-require_once  '..\vendor\autoload.php';
-
-use Core\Routing\Router;
-
-
-
-
-$router = new Router();
-
-include '../routes/route.php';
-
-try {
-    $path = trim($_SERVER["REQUEST_URI"], "/");
-    $router->dispatch($path);
-} catch (Exception $e) {
-    dd($e->getMessage());
-}
+$app = new Application(new Router());
+$app->run();

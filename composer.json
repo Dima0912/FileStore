@@ -1,12 +1,22 @@
 {
-    "name": "domains/lesson6.test",
-    "require": {
-        "larapack/dd": "^1.1"
-    },
-
-    
-        "autoload": {
-            "psr-4": {"Core\\": "Core/"}
+    "name": "lesson/mvc-framework",
+    "description": "test mvc",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "framework\\": "framework",
+            "app\\": "app/"
         }
-    
+    },
+    "authors": [
+        {
+            "name": "Mirny Dima",
+            "email": "mirnydimas@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "ext-mbstring": "*"
+    }
 }
