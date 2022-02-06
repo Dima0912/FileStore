@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 
-class HomeController
+class HomeController 
 {
     protected function index()
     {

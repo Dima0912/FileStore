@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use \framework\Interfaces\ControllerInterface;
+use framework\Interfaces\ControllerInterface;
 
 class Page404Controller implements ControllerInterface
 {
